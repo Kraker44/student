@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Стоп Обман — защита от мошенничества</title>
+  <meta name="description" content="Информационно-социальный проект о защите от телефонного и интернет-мошенничества." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- фон: сетка + зерно + курсор-подсветка -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ===== ШАПКА ===== -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a href="#top" class="logo">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </span>
+        <span class="logo__text">Стоп Обман</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#warnings">Предупреждения</a>
+        <a href="#tips">Советы</a>
+        <a href="#quiz">Тест</a>
+        <a href="#family">Защити близких</a>
+      </nav>
+      <button class="btn btn--primary btn--sm glow" data-open-modal="report" data-magnetic>Сообщить о мошенничестве</button>
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== БЕГУЩАЯ СТРОКА ===== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>⚠ Никогда не сообщайте код из SMS</span>
+      <span>✕ Не переводите деньги на «безопасный счёт»</span>
+      <span>⚡ Проверяйте ссылки перед переходом</span>
+      <span>🛡 Предупредите близких о новых схемах</span>
+      <span>⚠ Никогда не сообщайте код из SMS</span>
+      <span>✕ Не переводите деньги на «безопасный счёт»</span>
+      <span>⚡ Проверяйте ссылки перед переходом</span>
+      <span>🛡 Предупредите близких о новых схемах</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <span class="badge reveal">Информационно-социальный проект</span>
+          <h1 class="hero__title reveal">
+            <span class="hero__title-line">Защитим себя</span>
+            <span class="hero__title-line">и близких от <span class="accent">мошенников</span></span>
+          </h1>
+          <p class="hero__lead reveal">
+            «Стоп Обман» — информационно-социальный проект, направленный на защиту населения
+            от интернет- и телефонного мошенничества. Изучайте проверенные схемы, сообщайте
+            о подозрительных случаях и делитесь предупреждениями с близкими.
+          </p>
+          <div class="hero__actions reveal">
+            <button class="btn btn--primary btn--lg glow" data-open-modal="report" data-magnetic>Сообщить о мошенничестве</button>
+            <button class="btn btn--ghost btn--lg" data-open-modal="volunteer" data-magnetic>Пригласить волонтёров</button>
+          </div>
+          <div class="hero__stats reveal">
+            <div class="stat">
+              <span class="stat__num" data-count="3">0</span>
+              <span class="stat__label">схемы в базе</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="5">0</span>
+              <span class="stat__label">правил защиты</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="5">0</span>
+              <span class="stat__label">ситуаций в тесте</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__card">
+            <div class="hero__card-icon">📞</div>
+            <p class="hero__card-title">Звонок из «банка»?</p>
+            <p class="hero__card-text">Не называйте код из SMS. Завершите разговор и позвоните в банк сами.</p>
+            <span class="hero__card-scan"></span>
+          </div>
+          <div class="hero__glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ПРЕДУПРЕЖДЕНИЯ ===== -->
+    <section class="section" id="warnings">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__eyebrow">01 — Предупреждения</span>
+          <h2>Актуальные <span class="accent">предупреждения</span></h2>
+          <p>Схемы, которые мошенники используют прямо сейчас.</p>
+        </div>
+        <div class="cards">
+          <article class="card card--warn reveal">
+            <span class="card__index">01</span>
+            <span class="card__tag">Телефон</span>
+            <h3>Звонки от сотрудников банка</h3>
+            <p>Мошенники представляются сотрудниками банка и сообщают о подозрительных операциях. Они могут просить назвать код из SMS, сообщить данные карты или перевести деньги на «безопасный счёт».</p>
+            <p class="card__action">Не сообщайте коды и не переводите деньги. Завершите разговор и свяжитесь с банком по официальному номеру.</p>
+          </article>
+          <article class="card card--warn reveal">
+            <span class="card__index">02</span>
+            <span class="card__tag">SMS / Соцсети</span>
+            <h3>Сообщения о выплатах и выигрышах</h3>
+            <p>Мошенники отправляют сообщения о якобы положенных выплатах, призах или компенсациях. Для их получения предлагают перейти по ссылке, ввести личные данные или оплатить комиссию.</p>
+            <p class="card__action">Не переходите по подозрительным ссылкам. Проверяйте информацию только через официальные источники.</p>
+          </article>
+          <article class="card card--warn reveal">
+            <span class="card__index">03</span>
+            <span class="card__tag">Объявления</span>
+            <h3>Мошенничество на сайтах объявлений</h3>
+            <p>Продавцы или покупатели могут отправлять поддельные ссылки для оплаты, получения денег или доставки товара. После ввода данных мошенники получают доступ к банковской информации.</p>
+            <p class="card__action">Не переходите по ссылкам из переписки, не сообщайте коды подтверждения. Оплачивайте только через официальные сервисы.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== СОВЕТЫ ===== -->
+    <section class="section section--muted" id="tips">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__eyebrow">02 — Советы</span>
+          <h2>Пять правил <span class="accent">цифровой гигиены</span></h2>
+          <p>Коротко и по делу — то, что стоит запомнить каждому.</p>
+        </div>
+        <ol class="tips">
+          <li class="tip reveal">
+            <span class="tip__num">1</span>
+            <div><h3>Не сообщайте личные данные</h3><p>Никому не передавайте пароли, коды из SMS и данные банковской карты.</p></div>
+          </li>
+          <li class="tip reveal">
+            <span class="tip__num">2</span>
+            <div><h3>Проверяйте информацию</h3><p>Если вам звонят из банка или госорганизации, завершите разговор и свяжитесь по официальному номеру.</p></div>
+          </li>
+          <li class="tip reveal">
+            <span class="tip__num">3</span>
+            <div><h3>Не переходите по подозрительным ссылкам</h3><p>Проверяйте адрес сайта, прежде чем вводить личные данные или оплачивать покупки.</p></div>
+          </li>
+          <li class="tip reveal">
+            <span class="tip__num">4</span>
+            <div><h3>Не поддавайтесь давлению</h3><p>Мошенники часто торопят, пугают и требуют немедленно принять решение. Остановитесь и всё перепроверьте.</p></div>
+          </li>
+          <li class="tip reveal">
+            <span class="tip__num">5</span>
+            <div><h3>Предупреждайте близких</h3><p>Рассказывайте родным о новых схемах обмана и помогайте соблюдать правила цифровой безопасности.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== ИНТЕРАКТИВ 1: ТЕСТ ===== -->
+    <section class="section" id="quiz">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__eyebrow">03 — Интерактив</span>
+          <h2>Сможешь распознать <span class="accent">мошенника?</span></h2>
+          <p>Мини-тест из 5 ситуаций. Выберите, как бы вы поступили, и узнайте результат.</p>
+        </div>
+
+        <div class="quiz reveal" id="quizApp">
+          <div class="quiz__screen quiz__screen--active" data-screen="start">
+            <h3>5 реальных по типу, но вымышленных ситуаций</h3>
+            <p>После каждого ответа — короткое объяснение, почему это действие защищает вас.</p>
+            <button class="btn btn--primary btn--lg glow" id="quizStart" data-magnetic>Начать тест</button>
+          </div>
+
+          <div class="quiz__screen" data-screen="question">
+            <div class="quiz__top">
+              <span class="quiz__progress-text" id="quizProgressText">Вопрос 1 из 5</span>
+              <div class="quiz__progress"><div class="quiz__progress-bar" id="quizProgressBar"></div></div>
+            </div>
+            <h3 class="quiz__question" id="quizQuestion"></h3>
+            <div class="quiz__options" id="quizOptions"></div>
+            <div class="quiz__feedback" id="quizFeedback" hidden>
+              <p class="quiz__feedback-title" id="quizFeedbackTitle"></p>
+              <p class="quiz__feedback-text" id="quizFeedbackText"></p>
+              <button class="btn btn--primary" id="quizNext">Далее</button>
+            </div>
+          </div>
+
+          <div class="quiz__screen" data-screen="result">
+            <h3 id="quizResultTitle"></h3>
+            <p id="quizResultText"></p>
+            <div class="quiz__score" id="quizScore"></div>
+            <button class="btn btn--primary btn--lg glow" id="quizRestart" data-magnetic>Пройти заново</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ИНТЕРАКТИВ 2: ЗАЩИТИ БЛИЗКИХ ===== -->
+    <section class="section section--muted" id="family">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__eyebrow">04 — Интерактив</span>
+          <h2>Защити <span class="accent">близких</span></h2>
+          <p>Краткий инструктаж о безопасности для родителей, бабушек и дедушек.</p>
+        </div>
+
+        <div class="steps reveal" id="stepsApp">
+          <div class="steps__progress" id="stepsProgress"></div>
+
+          <div class="steps__screen steps__screen--active" data-step="0">
+            <span class="steps__label">Шаг 1 из 3</span>
+            <h3>Объясните близким основные правила безопасности</h3>
+            <p>Расскажите родителям, бабушкам и дедушкам, что мошенники могут представляться сотрудниками банка, полиции или государственных организаций. Они часто пугают человека потерей денег и требуют срочно выполнить их инструкции.</p>
+            <p class="steps__example"><strong>Пример:</strong> звонящий сообщает, что деньги находятся под угрозой, и просит назвать код из SMS. Правильное действие — прекратить разговор и ни в коем случае не сообщать код.</p>
+          </div>
+
+          <div class="steps__screen" data-step="1">
+            <span class="steps__label">Шаг 2 из 3</span>
+            <h3>Научите проверять информацию</h3>
+            <p>Объясните, что нельзя доверять каждому звонку, сообщению или письму, даже если они выглядят официально. Если человек представляется сотрудником организации, необходимо самостоятельно найти её официальный номер и связаться с ней.</p>
+            <p class="steps__example"><strong>Пример:</strong> приходит сообщение о положенной выплате со ссылкой на неизвестный сайт. Не переходите по ссылке, а проверьте информацию на официальном сайте ведомства.</p>
+          </div>
+
+          <div class="steps__screen" data-step="2">
+            <span class="steps__label">Шаг 3 из 3</span>
+            <h3>Объясните, как действовать в подозрительных ситуациях</h3>
+            <p>Научите близких не торопиться с решениями, не переводить деньги незнакомцам и не устанавливать приложения по просьбе неизвестных людей. Если ситуация вызывает сомнения, лучше остановиться и посоветоваться с родственниками.</p>
+            <p class="steps__example"><strong>Пример:</strong> незнакомец предлагает помочь установить приложение для защиты денег и просит предоставить удалённый доступ к телефону. Нужно отказаться, завершить общение и не устанавливать приложение.</p>
+          </div>
+
+          <div class="steps__screen steps__screen--final" data-step="3">
+            <h3>Теперь вы знаете, как помочь близким защититься от мошенников!</h3>
+            <p>Скачайте памятку и поделитесь ею с родными.</p>
+            <a href="памятка.jpg" class="btn btn--primary btn--lg glow" download="Памятка_Стоп_Обман.jpg" data-magnetic id="memoDownload">
+              Скачать памятку (PDF)
+            </a>
+            <p class="steps__note">Файл откроется или скачается в зависимости от настроек браузера.</p>
+          </div>
+
+          <div class="steps__nav">
+            <button class="btn btn--ghost" id="stepsPrev" disabled>Назад</button>
+            <button class="btn btn--primary" id="stepsNext">Далее</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== ФУТЕР ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </span>
+        <span>Стоп Обман</span>
+      </div>
+      <p class="footer__text">Информационно-социальный проект по защите от телефонного и интернет-мошенничества.</p>
+      <p class="footer__copy">© 2026 «Стоп Обман». Все материалы носят информационный характер.</p>
+    </div>
+  </footer>
+
+  <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__overlay" data-close-modal></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" data-close-modal aria-label="Закрыть">✕</button>
+
+      <div class="modal__body" id="modalReport" hidden>
+        <h3 id="modalTitle">Сообщить о мошенничестве</h3>
+        <p class="modal__lead">Оставьте заявку — она поможет собрать актуальную информацию о схемах мошенничества.</p>
+        <form class="form" id="reportForm">
+          <label>Ваше имя <input type="text" name="name" placeholder="Как к вам обращаться" required></label>
+          <label>Телефон или e-mail <input type="text" name="contact" placeholder="Для связи" required></label>
+          <label>Что произошло <textarea name="message" rows="4" placeholder="Опишите ситуацию: звонок, сообщение, ссылка..." required></textarea></label>
+          <button type="submit" class="btn btn--primary btn--full">Отправить</button>
+          <p class="form__note">Это демонстрационная форма. Подключение к серверу — следующий этап.</p>
+        </form>
+      </div>
+
+      <div class="modal__body" id="modalVolunteer" hidden>
+        <h3>Пригласить волонтёров</h3>
+        <p class="modal__lead">Бесплатное занятие по цифровой безопасности для школы, детского дома, организации или группы пожилых людей.</p>
+        <form class="form" id="volunteerForm">
+          <label>Организация <input type="text" name="org" placeholder="Название школы или организации" required></label>
+          <label>Контактное лицо <input type="text" name="name" placeholder="Имя" required></label>
+          <label>Телефон или e-mail <input type="text" name="contact" placeholder="Для связи" required></label>
+          <label>Комментарий <textarea name="message" rows="3" placeholder="Количество участников, удобные даты..."></textarea></label>
+          <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
+          <p class="form__note">Это демонстрационная форма. Подключение к серверу — следующий этап.</p>
+        </form>
+      </div>
+
+      <div class="modal__body" id="modalSuccess" hidden>
+        <h3>Спасибо!</h3>
+        <p>Ваша заявка отправлена. Мы свяжемся с вами.</p>
+        <button class="btn btn--primary btn--full" data-close-modal>Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
